@@ -12,10 +12,13 @@ class MyItems extends StatelessWidget {
      // Access the GoodsProvider
     final goodsProvider = Provider.of<GoodsProvider>(context);
     return Container(
-      padding: EdgeInsets.only(top: 15),
+      color: Theme.of(context).colorScheme.inversePrimary,
+      
+      padding: const EdgeInsets.only(top: 10),
       child: SizedBox(
         height: 300, // Define height to avoid overflow issues
         child: ListView.builder(
+        
           clipBehavior: Clip.hardEdge,
           scrollDirection: Axis.horizontal,
           // Horizontal scrolling
@@ -89,7 +92,7 @@ class MyItems extends StatelessWidget {
                             ),
                             Text(
                               '${product.rating}',
-                              style: TextStyle(color: Colors.grey),
+                              style: const TextStyle(color: Colors.grey),
                             )
                           ],
                         ),

@@ -2,21 +2,46 @@ import 'package:flutter/material.dart';
 import 'package:fu_ecom/components/btnAdd.dart';
 import 'package:fu_ecom/models/goods_model.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:provider/provider.dart';
 
 class ItemsDetail extends StatefulWidget {
   final GoodsModel eComerceApp;
-  const ItemsDetail({super.key, required this.eComerceApp});
+
+  const ItemsDetail({
+    super.key,
+    required this.eComerceApp,
+  });
 
   @override
   State<ItemsDetail> createState() => _ItemsDetailState();
 }
 
-
-
+// for show detail
 class _ItemsDetailState extends State<ItemsDetail> {
   int currenIndex = 0;
   int selectedColorIndex = 1;
   int selectedSizeIndex = 1;
+  void addToCart(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: const Text("Add your item to the cart"),
+        actions: [
+          MaterialButton(
+            onPressed: () => Navigator.pop(context),
+            child: const Text('Cancel'),
+          ),
+          MaterialButton(
+            onPressed: () => {
+              Navigator.pop(context),
+              context.read<GoodsProvider>().addToCart(widget.eComerceApp)
+            },
+            child: const Text("Yes"),
+          )
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,41 +52,38 @@ class _ItemsDetailState extends State<ItemsDetail> {
         title: const Text("Detail"),
         actions: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal:20 ),
-            child: Stack(
-              clipBehavior: Clip.none,
-              children: [
-                const Icon(
-                  Iconsax.shopping_bag,
-                  size: 28,
-                ),
-                Positioned(
-                  right: -3,
-                  top: -4,
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Center(
-                      child: Text(
-                        "3",
-                        style: TextStyle(color: Colors.white, fontSize: 12),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          )
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/cart_page');
+                      },
+                      icon: const Icon(Iconsax.shopping_bag)),
+                  Positioned(
+                      right: 1,
+                      top: 2,
+                      child: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: const BoxDecoration(
+                            color: Colors.red, shape: BoxShape.circle),
+                        child: const Center(
+                          child: Text(
+                            "3",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ))
+                ],
+              ))
         ],
       ),
       body: SafeArea(
         child: ListView(
           children: [
             // Image Slider Section
-            Container(
+            SizedBox(
               height: size.height * 0.46,
               width: size.width,
               child: PageView.builder(
@@ -120,7 +142,7 @@ class _ItemsDetailState extends State<ItemsDetail> {
                         "H&M",
                         style: TextStyle(fontSize: 12, color: Colors.grey),
                       ),
-                      SizedBox(width: 4),
+                      const SizedBox(width: 4),
                       const Icon(
                         Icons.star,
                         color: Colors.amber,
@@ -131,17 +153,18 @@ class _ItemsDetailState extends State<ItemsDetail> {
                         '${widget.eComerceApp.rating}',
                         style: const TextStyle(color: Colors.grey),
                       ),
-                      Spacer(),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.favorite)),
+                      const Spacer(),
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.favorite)),
                     ],
                   ),
                   const SizedBox(height: 10),
                   // Description
                   Text(
-                    widget.eComerceApp.name ?? "No description available",
-                    style: const TextStyle(
+                    widget.eComerceApp.name,
+                    style:  TextStyle(
                       fontSize: 14,
-                      color: Colors.black,
+                      color:Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -153,7 +176,7 @@ class _ItemsDetailState extends State<ItemsDetail> {
                         Text(
                           '\$${widget.eComerceApp.price}.00',
                           style: const TextStyle(
-                            color: Colors.grey,
+                            color: Colors.black,
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
                             decoration: TextDecoration.lineThrough,
@@ -175,18 +198,18 @@ class _ItemsDetailState extends State<ItemsDetail> {
                   ),
                   Text(
                     '${widget.eComerceApp.description}${widget.eComerceApp.name}',
-                    style: TextStyle(fontSize: 16, color: Colors.black45),
+                    style:  TextStyle(fontSize: 16, color:Theme.of(context).colorScheme.primary),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "Color",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w500),
@@ -230,11 +253,11 @@ class _ItemsDetailState extends State<ItemsDetail> {
                       ),
                       SizedBox(
                         child: Padding(
-                          padding: EdgeInsets.only(top: 10),
+                          padding: const EdgeInsets.only(top: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              const Text(
                                 "Size",
                                 style: TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w500),
@@ -251,12 +274,12 @@ class _ItemsDetailState extends State<ItemsDetail> {
                                     return GestureDetector(
                                       onTap: () {
                                         setState(() {
-                                              selectedColorIndex = index;
-                                            });
+                                          selectedColorIndex = index;
+                                        });
                                       },
                                       child: Container(
-                                        margin:
-                                            EdgeInsets.only(right: 10, top: 10),
+                                        margin: const EdgeInsets.only(
+                                            right: 10, top: 10),
                                         height: 35,
                                         width: 35,
                                         decoration: BoxDecoration(
@@ -308,11 +331,22 @@ class _ItemsDetailState extends State<ItemsDetail> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Add to Cart Button
-              Btnadd(onTap: (){},text: "Add to Cart",color: Colors.white,colorfn: Colors.black,iconData:Icons.shopping_bag,),
+              Btnadd(
+                onTap: () => addToCart(context),
+                text: "Add to Cart",
+                color: Colors.white,
+                colorfn: Colors.black,
+                iconData: Icons.shopping_bag,
+              ),
               const SizedBox(width: 10),
               // Buy Now Button
-              Btnadd(onTap: (){},text: "Buy Now",color:Colors.black,colorfn:Colors.white,iconData: null,)
-              
+              Btnadd(
+                onTap: () {},
+                text: "Buy Now",
+                color: Colors.black,
+                colorfn: Colors.white,
+                iconData: null,
+              )
             ],
           ),
         ),

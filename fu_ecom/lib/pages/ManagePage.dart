@@ -1,5 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fu_ecom/pages/Notification.dart';
+
 import 'package:fu_ecom/pages/UserPage.dart';
 import 'package:fu_ecom/pages/app_home.dart';
 import 'package:fu_ecom/pages/app_search.dart';
@@ -15,19 +16,19 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int selectedIndex = 0;
   final List pages = [
-    AppHome(),
-    AppSearch(),
-    Scaffold(),
-    Userpage(),
+    const AppHome(),
+    const AppSearch(),
+    const Notifications(),
+    const Userpage(),
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.black38,
           selectedItemColor: Colors.black,
-          backgroundColor: Colors.grey[350],
+          backgroundColor: Theme.of(context).colorScheme.secondary,
           type: BottomNavigationBarType.fixed,
           currentIndex: selectedIndex,
           onTap: (value) => (setState(() {

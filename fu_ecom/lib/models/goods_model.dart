@@ -32,10 +32,10 @@ class GoodsModel {
 }
 
 class GoodsProvider with ChangeNotifier {
-  List<GoodsModel> _goodsList = [
+  final List<GoodsModel> _goodsList = [
     GoodsModel(
       name: "Oversized Fit Print T-Shirt WoMen",
-      image: "lib/image/women001.jpg",
+      image: "lib/image/11.png",
       description: "The best product for last year and trending in my store.",
       category: "Women",
       rating: 4.9,
@@ -50,11 +50,11 @@ class GoodsProvider with ChangeNotifier {
       ],
       size: ["S", "L", "XL"],
     ),
-    GoodsModel(
-      name: "Oversized Fit Print T-Shirt Women",
-      image: "lib/image/women003.jpg",
+     GoodsModel(
+      name: "Oversized Fit Print T-Shirt Men",
+      image: "lib/image/ten11pic.jpg",
       description: "Popular among customers for its comfort and style.",
-      category: "Women",
+      category: "Men",
       rating: 4.9,
       review: 136,
       price: 12,
@@ -68,7 +68,25 @@ class GoodsProvider with ChangeNotifier {
       size: ["S", "L", "XL"],
     ),
     GoodsModel(
-      name: "Oversized Fit Print T-Shirt",
+      name: "Oversized Fit Print Shoes",
+      image: "lib/image/shoes.jpg",
+      description: "The best product for last year and trending in my store.",
+      category: "Shoes",
+      rating: 4.9,
+      review: 136,
+      price: 1,
+      discount: 0, // No discount
+      isCheck: true,
+      fcolor: [
+        Colors.black,
+        Colors.blue,
+        Colors.blue[100]!,
+      ],
+      size: ["S", "L", "XL"],
+    ),
+   
+    GoodsModel(
+      name: "Cargo Skirt With Elastic Waistband",
       image: "lib/image/women002.jpg",
       description: "A comfortable T-shirt perfect for casual outings.",
       category: "Women",
@@ -85,10 +103,10 @@ class GoodsProvider with ChangeNotifier {
       size: ["S", "M", "L", "XL"],
     ),
     GoodsModel(
-      name: "Oversized Fit Print T-Shirt Men",
-      image: "lib/image/pr_01.jpg",
+      name: "Cap With Embroidery",
+      image: "lib/image/hat.jpg",
       description: "Great for everyday wear.",
-      category: "Men",
+      category: "Hat",
       rating: 4.9,
       review: 136,
       price: 1,
@@ -139,8 +157,30 @@ class GoodsProvider with ChangeNotifier {
 
   List<GoodsModel> get goodsList => _goodsList;
 
+
+   //user cart
+  final List<GoodsModel> _cart = [];
+   //get user cart
+  List<GoodsModel> get cart => _cart;
+
+  get isEmpty => null;
+
   void toggleCheck(GoodsModel item) {
     item.isCheck = !item.isCheck;
     notifyListeners();
   }
+
+   void addToCart(GoodsModel item) {
+    _cart.add(item);
+    notifyListeners();
+  }
+
+  // remove prodduct
+  void removeFromCart(GoodsModel item) {
+    _cart.remove(item);
+    notifyListeners();
+  }
+
+
+
 }

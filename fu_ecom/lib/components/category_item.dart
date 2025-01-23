@@ -15,12 +15,13 @@ class CategoryItem extends StatefulWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
   _CategoryItemState createState() => _CategoryItemState();
 }
 
 class _CategoryItemState extends State<CategoryItem> {
   // for search
-  TextEditingController _searchCtr = TextEditingController();
+  final TextEditingController _searchCtr = TextEditingController();
   List<GoodsModel> _filteredItems = [];
 
   @override
@@ -118,7 +119,9 @@ class _CategoryItemState extends State<CategoryItem> {
                 ),
               ),
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
+
+            
             // Content Placeholder (e.g., Items List)
             Expanded(
               child: _filteredItems.isEmpty
@@ -145,6 +148,7 @@ class _CategoryItemState extends State<CategoryItem> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => ItemsDetail(
+                                      
                                           eComerceApp: item,
                                         )));
                             print("Tapped on ${item.name}");
@@ -196,7 +200,7 @@ class _CategoryItemState extends State<CategoryItem> {
                                       const SizedBox(width: 4),
                                       Text(
                                         '${item.rating}',
-                                        style: TextStyle(color: Colors.grey),
+                                        style: const TextStyle(color: Colors.grey),
                                       ),
                                     ],
                                   ),

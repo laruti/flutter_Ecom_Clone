@@ -22,7 +22,7 @@ class Btnadd extends StatelessWidget {
         onTap: onTap,
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 20),
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
           color: color,
           //  decoration: BoxDecoration(
           //   color: color, // Background color

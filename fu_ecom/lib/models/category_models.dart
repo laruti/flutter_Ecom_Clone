@@ -7,14 +7,12 @@ class Category {
 // List of categories
 List<Category> category = [
   Category(image: "lib/image/womenAv2.jpg", name: "women"),
-  Category(image: "lib/image/menAv.jpg", name: "men"),
-  Category(image: "lib/image/kidw.jpg", name: "kid"),
-  Category(image: "lib/image/teen.jpg", name: "teens"),
-  Category(image: "lib/image/babyAv.jpg", name: "baby"),
+  Category(image: "lib/image/MenModel02.jpg", name: "men"),
+  Category(image: "lib/image/hat.jpg", name: "Hat"),
+  Category(image: "lib/image/shoes.jpg", name: "Shoes"),
+  Category(image: "lib/image/belt.jpg", name: "Accessories"),
   Category(image: "lib/image/av_kid01.jpeg", name: "kid"),
-  Category(image: "lib/image/av_women.webp", name: "women"),
-  Category(image: "lib/image/av_men.jpeg", name: "men"),
-  Category(image: "lib/image/av_kid01.jpeg", name: "kid"),
+ 
 ];
 
 class MainItem {

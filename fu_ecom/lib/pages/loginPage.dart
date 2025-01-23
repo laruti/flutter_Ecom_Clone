@@ -1,10 +1,10 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fu_ecom/components/box_text.dart';
 import 'package:fu_ecom/components/login_botton.dart';
 import 'package:fu_ecom/components/squreTitle.dart';
 import 'package:fu_ecom/service/auth_services.dart';
+import 'package:iconsax/iconsax.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -105,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 //logo
                 const Icon(
-                  Icons.lock,
+                  Iconsax.shopping_cart,
                   size: 100,
                 ),
                 const SizedBox(

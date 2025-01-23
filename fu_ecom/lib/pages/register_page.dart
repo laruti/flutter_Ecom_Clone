@@ -5,6 +5,7 @@ import 'package:fu_ecom/components/box_text.dart';
 import 'package:fu_ecom/components/login_botton.dart';
 import 'package:fu_ecom/components/squreTitle.dart';
 import 'package:fu_ecom/service/auth_services.dart';
+import 'package:iconsax/iconsax.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -116,7 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 //logo
                 const Icon(
-                  Icons.lock,
+                  Iconsax.shopping_cart,
                   size: 100,
                 ),
                 const SizedBox(
@@ -200,7 +201,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     SqureTitle(
                       onTap: () => AuthService().signInWithGoogle(),
                      imagePath: 'lib/image/new.webp'),
-                    SizedBox(
+                    const SizedBox(
                       width: 25,
                     ),
       
